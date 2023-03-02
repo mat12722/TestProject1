@@ -43,17 +43,17 @@ namespace TestProject1
         {
             //sprawdzenie czy imiê i nazwisko zosta³o poprawnie wczytane
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var inputFname = WebDriver.FindElement(By.Id("fname"));
             inputFname.Clear();
             inputFname.SendKeys("Imie");
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var inputLname = WebDriver.FindElement(By.Id("lname"));
             inputLname.Clear();
             inputLname.SendKeys("Nazwisko");
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var testF = WebDriver.FindElement(By.Id("fname"));
             String testFValue=testF.GetAttribute("value");
             var testL = WebDriver.FindElement(By.Id("lname"));
@@ -66,16 +66,16 @@ namespace TestProject1
         {
             //radio button test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var radioBMale = WebDriver.FindElement(By.Id("male"));
             radioBMale.Click();
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var radioBFemale = WebDriver.FindElement(By.Id("female"));
             radioBFemale.Click();
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var radioBOther = WebDriver.FindElement(By.Id("other"));
             radioBOther.Click();
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             String radioChecked = WebDriver.FindElement(By.Id("other")).GetAttribute("checked");
             Assert.AreEqual("true", radioChecked);
         }
@@ -84,10 +84,10 @@ namespace TestProject1
         {
             //scrolable option test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             SelectElement optionCheck = new SelectElement(WebDriver.FindElement(By.Id("owc")));
             optionCheck.SelectByValue("option 1");
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             SelectElement optionCheckd = new SelectElement(WebDriver.FindElement(By.Id("owc")));
             string selectedOptionList = optionCheckd.SelectedOption.Text;
             Assert.AreEqual("Option 1", selectedOptionList);
@@ -97,13 +97,13 @@ namespace TestProject1
         {
             //checkbox option test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement optionCheck1 = WebDriver.FindElement(By.Name("option1"));
             optionCheck1.Click();
             IWebElement optionCheck2 = WebDriver.FindElement(By.Name("option2"));
             optionCheck2.Click();
             IWebElement optionCheck3 = WebDriver.FindElement(By.Name("option3"));
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             if(optionCheck1.Selected==true && optionCheck2.Selected==true && optionCheck3.Selected==false)
             {
                 Assert.IsTrue(true);
@@ -117,10 +117,10 @@ namespace TestProject1
         {
             //checkbox option test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement optionCheck1 = WebDriver.FindElement(By.Name("Options"));
             optionCheck1.SendKeys("Chocolate");
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var testL = WebDriver.FindElement(By.Name("Options"));
             String testValue = testL.GetAttribute("value");
             Assert.AreEqual("Chocolate", testValue);
@@ -130,10 +130,10 @@ namespace TestProject1
         {
             //datalist input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement optionCheck1 = WebDriver.FindElement(By.Name("favcolor"));
             optionCheck1.SendKeys("#FF0000");
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             
         }
         [Test]
@@ -141,10 +141,10 @@ namespace TestProject1
         {
             //date input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement date = WebDriver.FindElement(By.Name("day"));
-            date.SendKeys("03032023");
-            Thread.Sleep(5000);
+            date.SendKeys("01032023");
+            //Thread.Sleep(5000);
             String LocalDate = DateTime.Today.ToString("yyyy/MM/dd");
             String date2 = date.GetAttribute("value").Replace('-', '.');
             
@@ -157,11 +157,11 @@ namespace TestProject1
         {
             //range input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement rangeCheck = WebDriver.FindElement(By.Id("a"));
             Actions action = new Actions(WebDriver);
             action.DragAndDropToOffset(rangeCheck, 0,1).Build().Perform();
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             Assert.AreEqual("49", rangeCheck.GetAttribute("value"));
         }
         [Test]
@@ -169,20 +169,20 @@ namespace TestProject1
         {
             //file input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement fileCheck = WebDriver.FindElement(By.Id("myfile"));
             fileCheck.SendKeys("C:/Users/mat12/OneDrive/Pulpit/test.txt");
-            Thread.Sleep(50000);
+            //Thread.Sleep(50000);
         }
         [Test]
         public void Test11()
         {
             //number input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             IWebElement numberCheck = WebDriver.FindElement(By.Id("quantity"));
             numberCheck.SendKeys("4");
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             Assert.AreEqual("4", numberCheck.GetAttribute("value"));
         }
         [Test]
@@ -190,7 +190,7 @@ namespace TestProject1
         {
             //number input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var messageCheck = WebDriver.FindElement(By.Name("message"));
             messageCheck.Clear();
             messageCheck.SendKeys("message is rly long");
@@ -201,11 +201,12 @@ namespace TestProject1
         {
             //number input test
             WebDriver.Navigate().GoToUrl(BaseUrl);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             var messageCheck = WebDriver.FindElement(By.Name("message"));
             messageCheck.Clear();
             messageCheck.SendKeys("message is rly long");
             Assert.AreEqual("message is rly long", messageCheck.GetAttribute("value"));
+
         }
     }
 }
