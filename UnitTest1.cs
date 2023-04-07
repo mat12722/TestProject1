@@ -208,5 +208,61 @@ namespace TestProject1
             Assert.AreEqual("message is rly long", messageCheck.GetAttribute("value"));
 
         }
+        [Test]
+        public void Test14()
+        {
+            //allert button ok test
+            WebDriver.Navigate().GoToUrl(BaseUrl);
+            //Thread.Sleep(5000);
+            var allertb = WebDriver.FindElement(By.XPath("/html/body/div[3]/div[1]/div[1]/button"));
+            allertb.Click();
+            WebDriver.SwitchTo().Alert().Accept();
+            var AcceptCheck = WebDriver.FindElement(By.Id("demo"));
+            //Thread.Sleep(5000);
+            Assert.AreEqual("You Pressed the OK Button!", AcceptCheck.Text);
+
+        }
+        [Test]
+        public void Test15()
+        {
+            //allert button cancel test
+            WebDriver.Navigate().GoToUrl(BaseUrl);
+            //Thread.Sleep(5000);
+            var allertb = WebDriver.FindElement(By.XPath("/html/body/div[3]/div[1]/div[1]/button"));
+            allertb.Click();
+            WebDriver.SwitchTo().Alert().Dismiss();
+            var AcceptCheck = WebDriver.FindElement(By.Id("demo"));
+            //Thread.Sleep(5000);
+            Assert.AreEqual("You pressed the Cancel Button!", AcceptCheck.Text);
+
+        }
+        [Test]
+        public void Test16()
+        {
+            //tooltip is showing test
+            WebDriver.Navigate().GoToUrl(BaseUrl);
+            //Thread.Sleep(5000);
+            IWebElement toolTip = WebDriver.FindElement(By.XPath("/html/body/div[3]/div[1]/div[2]"));
+            Actions action = new Actions(WebDriver);
+            action.MoveToElement(toolTip).Build().Perform();
+            var find = WebDriver.FindElement(By.XPath("/html/body/div[3]/div[1]/div[2]/span"));
+            //Thread.Sleep(5000);
+            Assert.AreEqual("This is your sample Tooltip text", find.Text);
+
+        }
+        [Test]
+        public void Test17()
+        {
+            //tooltip is showing test
+            WebDriver.Navigate().GoToUrl(BaseUrl);
+            //Thread.Sleep(5000);
+            IWebElement doubleClick = WebDriver.FindElement(By.XPath("/html/body/div[3]/div[1]/button"));
+            Actions action = new Actions(WebDriver);
+            action.DoubleClick(doubleClick).Build().Perform();
+            var find = WebDriver.FindElement(By.XPath("/html/body/div[3]/div[1]/div[1]/p"));
+            //Thread.Sleep(5000);
+            Assert.AreEqual("Your Sample Double Click worked!", find.Text);
+
+        }
     }
 }
